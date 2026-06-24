@@ -1,0 +1,40 @@
+Website Problems Found:
+
+1. The website is built like an old static HTML site with separate pages.
+
+2. The design looks outdated and does not match modern restaurant websites.
+
+3. The menu is mostly a PDF/static menu instead of a clean clickable online menu.
+
+4. Online ordering is not strongly connected to the menu experience.
+
+5. The mobile experience would likely be frustrating for hungry customers.
+
+6. Important actions are not obvious enough:
+- Order Online
+- View Menu
+- Call Now
+- Get Directions
+
+7. Some pages are outdated or unnecessary, like Mo’s Fest and Employment being shown too prominently.
+
+Main Opportunity:
+Create a modern homepage that immediately shows food, ordering, menu, phone number, hours, and location.
+
+Homepage Goals:
+
+1. Show delicious pizza immediately.
+
+2. Make ordering food possible in one click.
+
+3. Make the phone number visible.
+
+4. Make the menu easy to browse.
+
+5. Show hours and location.
+
+6. Show that Mo's is a local Westwego favorite.
+
+7. Work perfectly on mobile phones.
+
+8. Look trustworthy and modern.

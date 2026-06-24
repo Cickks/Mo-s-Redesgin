@@ -1,0 +1,223 @@
+# Mo's Pizza Redesign Brief
+
+## Website Problems Found
+
+1. The website is built like an old static HTML site with separate pages.
+2. The design looks outdated and does not match modern restaurant websites.
+3. The menu is mostly a PDF/static menu instead of a clean clickable online menu.
+4. Online ordering is not strongly connected to the menu experience.
+5. The mobile experience would likely be frustrating for hungry customers.
+6. Important actions are not obvious enough:
+   - Order Online
+   - View Menu
+   - Call Now
+   - Get Directions
+7. Some pages are outdated or unnecessary, like Mo’s Fest and Employment being shown too prominently.
+
+## Main Opportunity
+
+Create a modern homepage that immediately shows food, ordering, menu, phone number, hours, and location.
+
+## Homepage Goals
+
+1. Show delicious pizza immediately.
+2. Make ordering food possible in one click.
+3. Make the phone number visible.
+4. Make the menu easy to browse.
+5. Show hours and location.
+6. Show that Mo's is a local Westwego favorite.
+7. Work perfectly on mobile phones.
+8. Look trustworthy and modern.
+
+## New Homepage Structure
+
+Section 1: Hero Banner
+Section 2: Featured Food
+Section 3: Why Locals Love Mo's
+Section 4: Order Online
+Section 5: Reviews
+Section 6: Location & Hours
+Section 7: Footer
+
+## What Each Section Means
+
+### Hero Banner
+- Big pizza image
+- Phone number
+- Order Now button
+- View Menu button
+
+### Featured Food
+- Pizza
+- Muffuletta
+- Pasta
+- Wings
+
+### Why Locals Love Mo's
+- Family owned
+- Local favorite
+- Large portions
+- Fresh ingredients
+
+### Order Online
+- Direct link to Toast
+
+### Reviews
+- Google reviews
+
+### Location & Hours
+- Address
+- Map
+- Hours
+
+### Footer
+- Contact info
+- Social media
+- Copyright
+
+## Hero Banner Details
+
+- Goal: Immediately make customers hungry and get them to order.
+- Background: Large professional pizza photo.
+- Headline: Westwego's Local Pizza Favorite
+- Subheadline: Fresh Pizza, Muffulettas, Pasta & Local Favorites Since [Year]
+- Buttons: [ Order Online ] [ View Menu ]
+- Quick Info Bar:
+  - 📍 1112 Ave H, Westwego, LA
+  - 📞 504-341-9650
+  - 🕒 Tue-Thu 11am-8pm | Fri-Sat 11am-9pm
+
+## Brand Identity
+
+Keywords:
+- Family
+- Local
+- Westwego
+- Large Portions
+- Authentic
+- Louisiana
+- Italian-American
+- Community
+
+Keep:
+- Green tablecloths
+- Local atmosphere
+- Large pizzas
+- Family dining
+
+Modernize:
+- Website
+- Menu experience
+- Online ordering
+- Mobile experience
+- Photography
+
+## Homepage Hero Concept
+
+- Background: Large close-up pizza photo
+- Headline: Westwego's Favorite Pizza Since [YEAR]
+- Subheadline: Hand-tossed pizzas, muffulettas, turnovers, and local favorites made fresh daily.
+- Buttons: Order Online, View Menu
+- Secondary Info: 1112 Ave H, Westwego, LA; 504-341-9650
+
+## Color Palette
+
+- Primary Red: #A32020
+- Cream White: #F5F1E8
+- Dark Green: #2F5D50
+- Black: #1B1B1B
+- Light Gray: #F4F4F4
+
+## Fonts
+
+- Headings: Playfair Display
+- Body: Poppins
+- Buttons: Poppins SemiBold
+
+## Final Website Pages
+
+1. Home
+2. Menu
+3. Order Online
+4. About Us
+5. Contact
+
+Optional Future Pages
+
+6. Catering
+7. Careers
+8. Mo's Fest
+
+## Top Navigation
+
+- Mo's Pizza Logo
+- Home
+- Menu
+- Order Online
+- About
+- Contact
+- [Order Now Button]
+
+## Hero Layout
+
+Left Side:
+- Headline
+- Subheadline
+- Buttons
+
+Right Side:
+- Large Pizza Image
+
+Top:
+- Phone Number
+- Hours
+- Location
+
+Buttons:
+- Order Online
+- View Menu
+
+## Success Metrics
+
+1. Customer can find menu within 3 seconds.
+2. Customer can order online within 5 seconds.
+3. Customer can call Mo's with one tap.
+4. Customer can get directions with one tap.
+5. Website looks modern on mobile devices.
+6. Website highlights real food photos.
+7. Website reflects Mo's local Westwego identity.
+
+## Design Notes
+
+Keep:
+- Mo's logo
+- Italian theme
+- Green tablecloth identity
+- Family atmosphere
+- Local Westwego branding
+
+Remove:
+- Outdated layout
+- PDF-focused experience
+- Excess empty space
+- Small text
+- Weak navigation
+
+Improve:
+- Mobile experience
+- Food photography
+- Online ordering
+- Reviews
+- Calls to action
+
+## Final Audit Conclusion
+
+Mo's Pizza does not need small edits.
+The current website should be fully redesigned because the layout, navigation, menu experience, and ordering flow feel outdated.
+The new website should be mobile-first and focused on four actions:
+1. Order Online
+2. View Menu
+3. Call Now
+4. Get Directions
+
+The biggest business opportunity is making it easier for hungry customers to order quickly from their phone.
