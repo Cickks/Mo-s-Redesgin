@@ -2525,3 +2525,68 @@ a {
     gap: var(--spacing-xs);
   }
 }
+
+/* ========================================
+   FINAL POLISH PASS — A11Y, MOTION, CRO
+   ======================================== */
+
+/* Visible keyboard focus rings (previously missing) */
+a:focus-visible,
+button:focus-visible,
+.button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-primary-red);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Keep focus ring readable on the red action bar / red buttons */
+.quick-actions-bar a:focus-visible,
+.button-primary:focus-visible,
+.button-nav:focus-visible {
+  outline-color: #fff;
+}
+
+/* Subtle, premium attention pulse on the primary Order CTA */
+@keyframes cta-attention {
+  0%, 100% {
+    box-shadow: 0 8px 22px rgba(163, 32, 32, 0.26);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(163, 32, 32, 0.46);
+  }
+}
+
+.button-nav {
+  animation: cta-attention 3.4s ease-in-out infinite;
+}
+
+.button-nav:hover,
+.button-nav:focus-visible {
+  animation-play-state: paused;
+}
+
+/* Smoother image rendering / fewer paint artifacts on hover-zoom */
+.showcase-media img,
+.showcase-gallery-item img,
+.showcase-feature-media img,
+.signature-media img,
+.menu-item-media img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Honor reduced-motion preference (performance + accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
