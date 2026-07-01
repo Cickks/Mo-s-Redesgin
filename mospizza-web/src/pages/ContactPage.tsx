@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import PageHero from '../components/layout/PageHero.tsx'
 import { locationDetails } from '../data/locationHours.ts'
+import Icon from '../components/common/Icon.tsx'
 
 const PHONE_TEL = '+15043419650'
 
@@ -44,14 +45,14 @@ function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                📍 Get Directions
+                <Icon name="pin" size={18} /> Get Directions
               </a>
             </div>
             <div className="contact-glass-card">
               <h3>Call Us</h3>
               <p>{locationDetails.phone}</p>
               <p><a href={`mailto:${locationDetails.email}`}>{locationDetails.email}</a></p>
-              <a className="button button-primary" href={`tel:${PHONE_TEL}`}>📞 Call Now</a>
+              <a className="button button-primary" href={`tel:${PHONE_TEL}`}><Icon name="phone" size={18} /> Call Now</a>
             </div>
             <div className="contact-glass-card">
               <h3>Hours</h3>
