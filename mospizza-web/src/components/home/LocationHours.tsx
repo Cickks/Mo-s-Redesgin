@@ -1,4 +1,5 @@
 import { locationDetails } from '../../data/locationHours.ts'
+import Icon from '../common/Icon.tsx'
 
 function LocationHours() {
   return (
@@ -24,7 +25,7 @@ function LocationHours() {
             <h3>Mo's Pizza</h3>
             <p className="address">{locationDetails.address}</p>
             <a href={`tel:${locationDetails.phone.replace(/\D/g, '')}`} className="button button-primary">
-              📞 Call {locationDetails.phone}
+              <Icon name="phone" size={18} /> Call {locationDetails.phone}
             </a>
           </div>
           <div className="location-hours">
@@ -35,7 +36,7 @@ function LocationHours() {
               ))}
             </ul>
             <a href={locationDetails.directionsUrl} target="_blank" rel="noopener noreferrer" className="button button-secondary">
-              📍 Get Directions
+              <Icon name="pin" size={18} /> Get Directions
             </a>
           </div>
         </div>
