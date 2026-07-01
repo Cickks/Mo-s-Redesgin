@@ -2760,3 +2760,69 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* ========================================
+   BESPOKE ICONOGRAPHY (replaces emoji)
+   ======================================== */
+
+/* Feature-card icons sit in a cream ring, drawn in brand red */
+.why-icon,
+.order-benefit-icon {
+  color: var(--color-primary-red);
+}
+
+.why-icon svg,
+.order-benefit-icon svg {
+  display: block;
+}
+
+/* Persistent chrome icons inherit their surface's text color */
+.quick-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-action-icon svg {
+  display: block;
+}
+
+/* Hero contact list — accent the icons in brand red */
+.hero-quick-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-red);
+}
+
+/* Inline icons inside buttons stay crisp and aligned */
+.button svg {
+  flex-shrink: 0;
+  margin-top: -1px;
+}
+
+/* ========================================
+   EDITORIAL GRAIN — subtle print texture on
+   the premium red / dark surfaces (not flat)
+   ======================================== */
+
+.order-cta-section::after,
+.site-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.site-footer {
+  position: relative;
+}
+
+.site-footer .footer-inner {
+  position: relative;
+  z-index: 1;
+}
