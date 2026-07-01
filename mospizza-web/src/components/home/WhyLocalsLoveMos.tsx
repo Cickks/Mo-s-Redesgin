@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import Icon from '../common/Icon.tsx'
+import type { IconName } from '../common/Icon.tsx'
 
 const gridVariants = {
   hidden: {},
@@ -11,28 +13,28 @@ const cardVariants = {
 }
 
 function WhyLocalsLoveMos() {
-  const reasons = [
+  const reasons: { id: string; icon: IconName; title: string; description: string }[] = [
     {
       id: 'family-owned',
-      icon: '👨‍👩‍👧‍👦',
+      icon: 'users',
       title: 'Family-Owned',
       description: 'Passed down through generations with care and pride.',
     },
     {
       id: 'fresh-ingredients',
-      icon: '🍅',
+      icon: 'leaf',
       title: 'Fresh Ingredients',
       description: 'We source quality ingredients for authentic Italian flavors.',
     },
     {
       id: 'large-portions',
-      icon: '🍕',
+      icon: 'pizza',
       title: 'Large Portions',
       description: 'Generous servings that keep customers coming back.',
     },
     {
       id: 'neighborhood-favorite',
-      icon: '⭐',
+      icon: 'star',
       title: 'Neighborhood Favorite',
       description: 'A trusted spot for family dinners and celebrations.',
     },
@@ -52,7 +54,7 @@ function WhyLocalsLoveMos() {
       >
         {reasons.map((reason) => (
           <motion.div key={reason.id} className="why-card" variants={cardVariants}>
-            <span className="why-icon" aria-hidden="true">{reason.icon}</span>
+            <span className="why-icon" aria-hidden="true"><Icon name={reason.icon} size={30} /></span>
             <h3>{reason.title}</h3>
             <p>{reason.description}</p>
           </motion.div>
