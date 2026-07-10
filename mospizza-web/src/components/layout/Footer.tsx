@@ -1,4 +1,8 @@
 import logo from '../../assets/mos-logo.png'
+import { TOAST_ORDER_URL } from '../../data/menu.ts'
+import { locationDetails } from '../../data/locationHours.ts'
+
+const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/search/Mo%27s+Pizza+1112+Ave+H+Westwego+LA'
 
 function Footer() {
   return (
@@ -11,10 +15,10 @@ function Footer() {
           <a href="tel:+15043419650">(504) 341-9650</a> &nbsp;|&nbsp;{' '}
           <a href="mailto:mosfest@gmail.com">mosfest@gmail.com</a>
         </p>
-        <div className="footer-social" aria-label="Social media">
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
-          <a href="https://order.toasttab.com/online/mos-pizza-1112-ave-h" target="_blank" rel="noopener noreferrer">Order Online</a>
+        <div className="footer-social" aria-label="Helpful links">
+          <a href={locationDetails.directionsUrl} target="_blank" rel="noopener noreferrer">Directions</a>
+          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer">Google Reviews</a>
+          <a href={TOAST_ORDER_URL} target="_blank" rel="noopener noreferrer">Order Online</a>
         </div>
         <p className="footer-copy">&copy; 2026 Mo's Pizza. All rights reserved.</p>
       </div>

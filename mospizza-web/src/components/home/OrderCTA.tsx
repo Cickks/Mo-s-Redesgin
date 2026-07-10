@@ -1,28 +1,20 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { TOAST_ORDER_URL } from '../../data/menu.ts'
+import { locationDetails } from '../../data/locationHours.ts'
+import Icon from '../common/Icon.tsx'
 
 function OrderCTA() {
-  const reduceMotion = useReducedMotion()
-
   return (
     <section className="order-cta-section page-section">
-      <motion.span
-        className="cta-float cta-float--one"
-        aria-hidden="true"
-        animate={reduceMotion ? undefined : { y: [0, -22, 0], x: [0, 14, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.span
-        className="cta-float cta-float--two"
-        aria-hidden="true"
-        animate={reduceMotion ? undefined : { y: [0, 20, 0], x: [0, -16, 0] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-      />
+      <span className="cta-float cta-float--one" aria-hidden="true" />
+      <span className="cta-float cta-float--two" aria-hidden="true" />
       <div className="cta-content">
         <h2>Ready to order?</h2>
-        <p>Get fresh pizza and Italian favorites delivered fast.</p>
+        <p>Get fresh pizza and Italian favorites for pickup or local delivery.</p>
         <div className="cta-buttons">
-          <a className="button button-lg cta-order-button cta-pulse" href="https://order.toasttab.com/online/mos-pizza-1112-ave-h" target="_blank" rel="noopener noreferrer">Order Now</a>
-          <a className="button button-lg cta-call-button" href="tel:+15043419650">Call (504) 341-9650</a>
+          <a className="button button-lg cta-order-button" href={TOAST_ORDER_URL} target="_blank" rel="noopener noreferrer">Order Now</a>
+          <a className="button button-lg cta-call-button" href={`tel:${locationDetails.phone.replace(/\D/g, '')}`}>
+            <Icon name="phone" size={18} /> Call {locationDetails.phone}
+          </a>
         </div>
       </div>
     </section>

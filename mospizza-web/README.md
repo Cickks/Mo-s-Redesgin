@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# Mo's Pizza Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React/Vite website for Mo's Pizza in Westwego, LA. The production experience is built around fast restaurant actions: menu browsing, Toast ordering, phone calls, directions, hours, and local trust.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Commands
+```powershell
+npm install
+npm run dev
+npm run lint
+npm run build
+npm run preview
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Routes
+- `/` - Home page with hero, featured menu, reviews, order CTA, and location.
+- `/menu` - Full browsable menu from typed menu data.
+- `/order` - Online ordering handoff and call-to-order path.
+- `/about` - Local restaurant story and trust signals.
+- `/contact` - Map, hours, phone, email, and directions.
+
+## Configuration
+No local `.env` file is required for the static website. Deployment secrets live in GitHub/Vercel, not in source control.
+
+## Launch Checks
+Before handoff or deploy:
+
+```powershell
+npm run lint
+npm run build
+```
+
+Then smoke test desktop and mobile:
+- Home loads with real food imagery.
+- Menu route shows categories and item cards.
+- Order links open Toast.
+- Phone links use `tel:`.
+- Directions links open maps.
+- No console errors.
