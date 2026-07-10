@@ -3,6 +3,7 @@ import Navbar from './components/layout/Navbar.tsx'
 import PageLayout from './components/layout/PageLayout.tsx'
 import QuickActionsBar from './components/layout/QuickActionsBar.tsx'
 import HomePage from './pages/HomePage.tsx'
+import MenuPage from './pages/MenuPage.tsx'
 import OrderPage from './pages/OrderPage.tsx'
 import AboutPage from './pages/AboutPage.tsx'
 import ContactPage from './pages/ContactPage.tsx'
@@ -17,6 +18,7 @@ function App() {
           <main className="app-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/menu" element={<MenuPage />} />
               <Route path="/order" element={<OrderPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />

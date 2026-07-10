@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../../assets/mos-logo.png'
 
 const ORDER_URL = 'https://order.toasttab.com/online/mos-pizza-1112-ave-h'
@@ -7,23 +7,8 @@ const ORDER_URL = 'https://order.toasttab.com/online/mos-pizza-1112-ave-h'
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const navigate = useNavigate()
 
   const closeMenu = () => setMenuOpen(false)
-
-  const goToMenu = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    closeMenu()
-    const scrollToMenu = () => {
-      document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
-    }
-    if (window.location.pathname === '/') {
-      scrollToMenu()
-    } else {
-      navigate('/')
-      window.setTimeout(scrollToMenu, 250)
-    }
-  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -57,7 +42,7 @@ function Navbar() {
           className={`nav-links ${menuOpen ? 'is-open' : ''}`}
         >
           <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-          <a href="/#menu" onClick={goToMenu}>Menu</a>
+          <NavLink to="/menu" onClick={closeMenu}>Menu</NavLink>
           <NavLink to="/order" onClick={closeMenu}>Order</NavLink>
           <NavLink to="/about" onClick={closeMenu}>About</NavLink>
           <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>

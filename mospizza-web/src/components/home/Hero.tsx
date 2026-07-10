@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import logo from '../../assets/mos-logo.png'
+import pizzaWhole from '../../assets/pizza-whole.webp'
 import Icon from '../common/Icon.tsx'
 
 const container = {
@@ -38,7 +40,7 @@ function Hero() {
           </motion.p>
           <motion.div className="hero-actions" variants={item}>
             <a className="button button-primary button-lg" href={ORDER_URL} target="_blank" rel="noopener noreferrer">Order Online</a>
-            <a className="button button-secondary button-lg" href="#menu">View Menu</a>
+            <Link className="button button-secondary button-lg" to="/menu">View Menu</Link>
           </motion.div>
           <motion.ul className="hero-quick-info" variants={item}>
             <li>
@@ -63,12 +65,15 @@ function Hero() {
             show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
           }}
         >
-          <motion.img
+          <img
+            src={pizzaWhole}
+            alt="Fresh hand-tossed pepperoni pizza at Mo's Pizza"
+            className="hero-food"
+          />
+          <img
             src={logo}
             alt="Mo's Pizza — Italians Do It Better"
-            className="hero-logo"
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="hero-logo-badge"
           />
         </motion.div>
       </motion.div>
