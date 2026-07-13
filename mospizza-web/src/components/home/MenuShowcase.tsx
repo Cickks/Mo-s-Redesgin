@@ -1,14 +1,19 @@
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from '../common/Reveal.tsx'
+import Icon from '../common/Icon.tsx'
 import { TOAST_ORDER_URL } from '../../data/menu.ts'
 import pizzaWhole from '../../assets/pizza-whole.webp'
-import pizzaPepperoni from '../../assets/pizza-pepperoni.jpg'
-import pizzaSlice from '../../assets/pizza-slice.jpg'
+import pepperoniPizzaNew from '../../assets/pepperoni-pizza-new.jpg'
+import cheesePizzaFacebook from '../../assets/cheese-pizza-facebook.webp'
+import loadedPizzaFacebook from '../../assets/loaded-pizza-facebook.webp'
 import muffaletta from '../../assets/muffaletta.webp'
 import lasagna from '../../assets/lasagna.webp'
 import salad from '../../assets/salad.webp'
-import wings from '../../assets/wings.jpg'
+import wings from '../../assets/wings-mos.jpg'
 import turnovers from '../../assets/turnovers.webp'
+import sausageRollFacebook from '../../assets/sausage-roll-facebook.webp'
+import meatPizzaFacebook from '../../assets/meat-pizza-facebook.webp'
 import deliCase from '../../assets/deli-case-2.webp'
 import familyTable from '../../assets/family-table.webp'
 import storefront from '../../assets/storefront-2.webp'
@@ -41,7 +46,7 @@ type ShowcaseItem = {
 const pizzas: ShowcaseItem[] = [
   {
     name: 'Pepperoni Pizza',
-    image: pizzaWhole,
+    image: pepperoniPizzaNew,
     price: '$20.25',
     priceNote: '14" pie · slice $5.56',
     description: 'Crispy hand-tossed crust loaded with pepperoni and Grande mozzarella.',
@@ -49,17 +54,15 @@ const pizzas: ShowcaseItem[] = [
   },
   {
     name: 'Cheese Pizza',
-    image: pizzaSlice,
+    image: cheesePizzaFacebook,
     price: '$18.65',
     priceNote: '14" pie · slice $5.03',
     description: 'The classic — fresh dough, homemade sauce and a blanket of Grande mozzarella.',
   },
   {
-    name: 'Supreme Pizza',
-    image: pizzaPepperoni,
-    price: '$26.15',
-    priceNote: '14" pie · slice $6.15',
-    description: 'Pepperoni, sausage, onions, bell peppers, mushrooms and black olives.',
+    name: 'Build Your Own Pizza',
+    image: loadedPizzaFacebook,
+    description: 'Start with fresh dough, homemade sauce and Grande mozzarella, then load it with your favorite toppings.',
   },
 ]
 
@@ -92,7 +95,7 @@ const appetizers: ShowcaseItem[] = [
   },
   {
     name: 'Sausage Roll',
-    image: deliCase,
+    image: sausageRollFacebook,
     price: '$7.84',
     description: 'Homemade Italian sausage, bell peppers, onions and cheese baked in fresh dough.',
   },
@@ -105,12 +108,48 @@ const appetizers: ShowcaseItem[] = [
 ]
 
 const galleryImages = [
-  { src: pizzaWhole, alt: 'Hand-tossed pepperoni pizza at Mo\u2019s Pizza' },
-  { src: deliCase, alt: 'Fresh slices, sausage rolls and breadsticks in the deli case' },
-  { src: mosCup, alt: 'Mo\u2019s Pizza Westwego cup on a checkered table' },
-  { src: storefront, alt: 'Mo\u2019s Pizza storefront on Avenue H, Westwego' },
-  { src: interiorEntrance, alt: 'Inside Mo\u2019s Pizza — welcome mat and wall of history' },
-  { src: memorabilia, alt: 'Saints and sports memorabilia on display at Mo\u2019s Pizza' },
+  {
+    src: pizzaWhole,
+    alt: 'Hand-tossed pepperoni pizza at Mo\u2019s Pizza',
+    label: 'From the oven',
+    caption: 'Hand-tossed and made for sharing',
+  },
+  {
+    src: meatPizzaFacebook,
+    alt: 'Fresh meat-topped pizza baked at Mo\u2019s Pizza',
+    label: 'A local favorite',
+    caption: 'Loaded high and baked fresh',
+  },
+  {
+    src: deliCase,
+    alt: 'Fresh slices, sausage rolls and breadsticks in the deli case',
+    label: 'At the counter',
+    caption: 'A Westwego lunch rush tradition',
+  },
+  {
+    src: mosCup,
+    alt: 'Mo\u2019s Pizza Westwego cup on a checkered table',
+    label: 'Only at Mo\u2019s',
+    caption: 'Proudly serving Westwego since 1987',
+  },
+  {
+    src: storefront,
+    alt: 'Mo\u2019s Pizza storefront on Avenue H, Westwego',
+    label: 'Avenue H',
+    caption: 'Your neighborhood pizza place',
+  },
+  {
+    src: interiorEntrance,
+    alt: 'Inside Mo\u2019s Pizza — welcome mat and wall of history',
+    label: 'Come on in',
+    caption: 'Generations of stories on the walls',
+  },
+  {
+    src: memorabilia,
+    alt: 'Saints and sports memorabilia on display at Mo\u2019s Pizza',
+    label: 'Westwego roots',
+    caption: 'Local pride in every corner',
+  },
 ]
 
 function OrderButton({ label = 'Order Now' }: { label?: string }) {
@@ -127,8 +166,16 @@ function OrderButton({ label = 'Order Now' }: { label?: string }) {
 }
 
 function ShowcaseCard({ item }: { item: ShowcaseItem }) {
+  const cardModifier =
+    item.name === 'Build Your Own Pizza'
+      ? ' showcase-card--build-your-own'
+      : item.name === 'Pepperoni Pizza'
+        ? ' showcase-card--pepperoni'
+        : ''
+  const cardClassName = `showcase-card${cardModifier}`
+
   return (
-    <motion.article className="showcase-card" variants={cardVariants}>
+    <motion.article className={cardClassName} variants={cardVariants}>
       <div className="showcase-media">
         <img src={item.image} alt={item.name} loading="lazy" />
         {item.badge && <span className="showcase-badge">★ {item.badge}</span>}
@@ -151,6 +198,73 @@ function ShowcaseCard({ item }: { item: ShowcaseItem }) {
 }
 
 function MenuShowcase() {
+  const galleryRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0)
+
+  function updateActiveGallery() {
+    const gallery = galleryRef.current
+    if (!gallery) return
+
+    const firstItem = gallery.querySelector<HTMLElement>('.showcase-gallery-item')
+    const itemWidth = firstItem?.getBoundingClientRect().width ?? gallery.clientWidth
+    const gap = Number.parseFloat(window.getComputedStyle(gallery).columnGap) || 0
+    const step = itemWidth + gap
+    const visibleItems = Math.max(1, Math.round(gallery.clientWidth / step))
+    const firstVisibleIndex = Math.round(gallery.scrollLeft / step)
+    const centerOffset = Math.floor((visibleItems - 1) / 2)
+
+    setActiveGalleryIndex(
+      Math.min(galleryImages.length - 1, firstVisibleIndex + centerOffset),
+    )
+  }
+
+  function scrollGallery(direction: -1 | 1) {
+    const gallery = galleryRef.current
+    if (!gallery) return
+
+    const firstItem = gallery.querySelector<HTMLElement>('.showcase-gallery-item')
+    const gap = Number.parseFloat(window.getComputedStyle(gallery).columnGap) || 0
+    const step = (firstItem?.getBoundingClientRect().width ?? gallery.clientWidth) + gap
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth
+    const atStart = gallery.scrollLeft <= 4
+    const atEnd = gallery.scrollLeft >= maxScroll - 4
+
+    const left =
+      direction === -1 && atStart
+        ? maxScroll
+        : direction === 1 && atEnd
+          ? 0
+          : gallery.scrollLeft + direction * step
+
+    gallery.scrollTo({ left, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const gallery = galleryRef.current
+    if (!gallery) return
+
+    updateActiveGallery()
+    const resizeObserver = new ResizeObserver(updateActiveGallery)
+    resizeObserver.observe(gallery)
+
+    return () => resizeObserver.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const gallery = galleryRef.current
+    const carousel = carouselRef.current
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!gallery || !carousel || reducedMotion) return
+
+    const intervalId = window.setInterval(() => {
+      const isPaused = carousel.contains(document.activeElement)
+      if (!isPaused && !document.hidden) scrollGallery(1)
+    }, 5000)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
+
   return (
     <section id="menu" className="menu-showcase">
       <div className="page-section showcase-intro">
@@ -162,16 +276,10 @@ function MenuShowcase() {
             Toast — pizzas, po-boys, dinners and more.
           </p>
         </div>
-        <div className="hero-actions showcase-intro-actions">
-          <OrderButton label="Order Online" />
-        </div>
-        <p className="showcase-note">
-          Board prices shown. Final pricing and availability are confirmed at Toast checkout.
-        </p>
       </div>
 
       {/* Featured Pizzas */}
-      <div className="page-section showcase-block">
+      <div className="page-section showcase-block showcase-featured-pizzas">
         <div className="section-header showcase-block-head">
           <h2>Featured Pizzas</h2>
           <p>Hand-tossed and made to order on fresh dough.</p>
@@ -187,14 +295,17 @@ function MenuShowcase() {
             <ShowcaseCard key={item.name} item={item} />
           ))}
         </motion.div>
+        <p className="showcase-note">
+          Board prices shown. Final pricing and availability are confirmed at Toast checkout.
+        </p>
       </div>
 
       {/* Wings feature band */}
       <Reveal>
-        <div className="showcase-feature">
+        <div className="showcase-feature showcase-feature--wings">
           <div className="showcase-feature-inner">
             <div className="showcase-feature-media">
-              <img src={wings} alt="Crispy chicken wings tossed in sauce" loading="lazy" />
+              <img src={wings} alt="Mo's sauced chicken wings served in a paper-lined basket" loading="lazy" />
             </div>
             <div className="showcase-feature-text">
               <span className="section-label">Wings</span>
@@ -281,17 +392,66 @@ function MenuShowcase() {
       </Reveal>
 
       {/* Food gallery */}
-      <div className="page-section showcase-block">
-        <div className="section-header showcase-block-head">
-          <h2>Straight from the shop</h2>
-          <p>Real food, real photos — no stock imagery here.</p>
+      <div ref={carouselRef} className="page-section showcase-block showcase-gallery-section">
+        <div className="showcase-gallery-heading">
+          <div className="section-header showcase-block-head">
+            <span className="section-label">Inside Mo&apos;s</span>
+            <h2>Straight from the shop</h2>
+            <p>Real food, real photos.</p>
+          </div>
+          <div className="showcase-carousel-meta">
+            <span className="showcase-carousel-count" aria-live="polite" aria-atomic="true">
+              <strong>{String(activeGalleryIndex + 1).padStart(2, '0')}</strong>
+              <span aria-hidden="true"> / </span>
+              <span>{String(galleryImages.length).padStart(2, '0')}</span>
+            </span>
+            <div className="showcase-carousel-controls" aria-label="Photo gallery controls">
+              <button
+                className="showcase-carousel-button"
+                type="button"
+                aria-label="Previous photo"
+                title="Previous photo"
+                onClick={() => scrollGallery(-1)}
+              >
+                <Icon name="chevron-left" size={22} />
+              </button>
+              <button
+                className="showcase-carousel-button"
+                type="button"
+                aria-label="Next photo"
+                title="Next photo"
+                onClick={() => scrollGallery(1)}
+              >
+                <Icon name="chevron-right" size={22} />
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="showcase-gallery">
-          {galleryImages.map((img) => (
-            <figure key={img.src} className="showcase-gallery-item">
-              <img src={img.src} alt={img.alt} loading="lazy" />
+        <div
+          ref={galleryRef}
+          className="showcase-gallery"
+          role="region"
+          aria-label="Mo's Pizza photo gallery"
+          tabIndex={0}
+          onScroll={updateActiveGallery}
+        >
+          {galleryImages.map((img, index) => (
+            <figure
+              key={img.src}
+              className={`showcase-gallery-item${index === activeGalleryIndex ? ' is-active' : ''}`}
+            >
+              <div className="showcase-gallery-image">
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </div>
+              <figcaption>
+                <span>{img.label}</span>
+                <strong>{img.caption}</strong>
+              </figcaption>
             </figure>
           ))}
+        </div>
+        <div className="showcase-carousel-progress" aria-hidden="true">
+          <span key={activeGalleryIndex} />
         </div>
       </div>
 

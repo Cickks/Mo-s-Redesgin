@@ -11,6 +11,8 @@ export type IconName =
   | 'phone'
   | 'pin'
   | 'clock'
+  | 'chevron-left'
+  | 'chevron-right'
 
 interface IconProps {
   name: IconName
@@ -73,6 +75,8 @@ const paths: Record<IconName, ReactElement> = {
       <polyline points="12 6 12 12 16 14" />
     </>
   ),
+  'chevron-left': <path d="m15 18-6-6 6-6" />,
+  'chevron-right': <path d="m9 18 6-6-6-6" />,
 }
 
 function Icon({ name, size = 24, className, style }: IconProps) {

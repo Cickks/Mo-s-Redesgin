@@ -4,13 +4,13 @@ import PageLayout from './components/layout/PageLayout.tsx'
 import QuickActionsBar from './components/layout/QuickActionsBar.tsx'
 import HomePage from './pages/HomePage.tsx'
 import MenuPage from './pages/MenuPage.tsx'
-import OrderPage from './pages/OrderPage.tsx'
+import OrderRedirect from './pages/OrderRedirect.tsx'
 import AboutPage from './pages/AboutPage.tsx'
 import ContactPage from './pages/ContactPage.tsx'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div className="app-shell">
         <QuickActionsBar />
         <Navbar />
@@ -19,7 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/menu" element={<MenuPage />} />
-              <Route path="/order" element={<OrderPage />} />
+              <Route path="/order" element={<OrderRedirect />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
             </Routes>

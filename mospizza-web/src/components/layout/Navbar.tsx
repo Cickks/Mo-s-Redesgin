@@ -43,7 +43,6 @@ function Navbar() {
         >
           <NavLink to="/" onClick={closeMenu}>Home</NavLink>
           <NavLink to="/menu" onClick={closeMenu}>Menu</NavLink>
-          <NavLink to="/order" onClick={closeMenu}>Order</NavLink>
           <NavLink to="/about" onClick={closeMenu}>About</NavLink>
           <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
           <a
