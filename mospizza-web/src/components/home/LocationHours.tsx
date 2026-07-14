@@ -1,4 +1,5 @@
 import { locationDetails } from '../../data/locationHours.ts'
+import storefront from '../../assets/storefront-2.webp'
 import Icon from '../common/Icon.tsx'
 
 function LocationHours() {
@@ -9,17 +10,18 @@ function LocationHours() {
         <p>Come grab a slice — or call ahead and we'll have it ready.</p>
       </div>
       <div className="location-content">
-        {locationDetails.mapEmbedUrl && (
-          <div className="location-map">
-            <iframe
-              title="Map to Mo's Pizza"
-              src={locationDetails.mapEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
-        )}
+        <a
+          className="location-map"
+          href={locationDetails.directionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open directions to Mo's Pizza in Google Maps"
+        >
+          <img src={storefront} alt="Mo's Pizza storefront on Avenue H in Westwego" loading="lazy" />
+          <span className="location-map-action">
+            <Icon name="pin" size={20} /> Open in Google Maps
+          </span>
+        </a>
         <div className="location-cards">
           <div className="location-info">
             <h3>Mo's Pizza</h3>

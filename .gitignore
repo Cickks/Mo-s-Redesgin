@@ -28,10 +28,10 @@ build/Release
 out/
 .nuxt
 
-# dotenv environment variable files
-.env
-.env.local
-.env.*.local
+# dotenv environment variable files (templates remain safe to commit)
+.env*
+!.env.example
+!.env.*.example
 
 # npm cache directory
 .npm

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import PageHero from '../components/layout/PageHero.tsx'
 import { locationDetails } from '../data/locationHours.ts'
 import Icon from '../components/common/Icon.tsx'
+import storefront from '../assets/storefront-2.webp'
 
 const PHONE_TEL = '+15043419650'
 
@@ -20,20 +21,25 @@ function ContactPage() {
           className="contact-info-column"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          {locationDetails.mapEmbedUrl && (
-            <div className="contact-map">
-              <iframe
-                title="Map to Mo's Pizza"
-                src={locationDetails.mapEmbedUrl}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
-          )}
+          <a
+            className="contact-map"
+            href={locationDetails.directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open directions to Mo's Pizza in Google Maps"
+          >
+            <img
+              src={storefront}
+              alt="Mo's Pizza storefront on Avenue H in Westwego, Louisiana"
+              loading="lazy"
+            />
+            <span className="contact-map-action">
+              <Icon name="pin" size={18} /> Open in Google Maps
+            </span>
+          </a>
 
           <div className="contact-detail-cards">
             <div className="contact-glass-card">

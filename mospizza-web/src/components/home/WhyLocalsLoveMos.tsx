@@ -53,7 +53,11 @@ function WhyLocalsLoveMos() {
         viewport={{ once: true, amount: 0.2 }}
       >
         {reasons.map((reason) => (
-          <motion.div key={reason.id} className="why-card" variants={cardVariants}>
+          <motion.div
+            key={reason.id}
+            className={`why-card why-card--${reason.id}`}
+            variants={cardVariants}
+          >
             <span className="why-icon" aria-hidden="true"><Icon name={reason.icon} size={30} /></span>
             <h3>{reason.title}</h3>
             <p>{reason.description}</p>
