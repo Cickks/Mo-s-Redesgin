@@ -1547,7 +1547,13 @@ a {
 }
 
 .menu-category + .menu-category {
-  padding-top: 0;
+  padding-top: var(--spacing-xl);
+}
+
+.menu-category--tinted {
+  background: #edf3ef;
+  box-shadow: 0 0 0 100vmax #edf3ef;
+  clip-path: inset(0 -100vmax);
 }
 
 .menu-category-header {
@@ -1558,6 +1564,11 @@ a {
 
 .menu-category-header h2 {
   color: var(--color-primary-red);
+}
+
+.menu-category-header h2::after {
+  margin-left: 0;
+  background: linear-gradient(90deg, var(--color-primary-red), #c99a35);
 }
 
 .menu-items-grid {
@@ -1660,10 +1671,12 @@ a {
   max-width: var(--content-width-wide);
   margin: 0 auto;
   padding: var(--spacing-sm) var(--gutter);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(231, 239, 234, 0.94);
   backdrop-filter: saturate(150%) blur(10px);
   -webkit-backdrop-filter: saturate(150%) blur(10px);
-  border-bottom: 1px solid var(--color-light-gray);
+  border-bottom: 1px solid rgba(47, 93, 80, 0.18);
+  box-shadow: 0 0 0 100vmax rgba(231, 239, 234, 0.94);
+  clip-path: inset(0 -100vmax);
   scrollbar-width: none;
 }
 
@@ -1677,14 +1690,19 @@ a {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-dark-gray);
-  background-color: var(--color-light-gray);
-  transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+  color: var(--color-dark-green);
+  background-color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(47, 93, 80, 0.12);
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.menu-nav-link:hover {
+.menu-nav-link:hover,
+.menu-nav-link.is-active {
   color: #fff;
-  background-color: var(--color-primary-red);
+  background-color: var(--color-dark-green);
+  border-color: var(--color-dark-green);
+  box-shadow: inset 0 -3px #d4aa4f;
   transform: translateY(-1px);
 }
 
@@ -1803,6 +1821,10 @@ a {
 
   .menu-category-header {
     text-align: center;
+    margin-left: auto;
+  }
+
+  .menu-category-header h2::after {
     margin-left: auto;
   }
 

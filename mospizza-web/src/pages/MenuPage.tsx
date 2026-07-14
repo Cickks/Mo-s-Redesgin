@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import PageHero from '../components/layout/PageHero.tsx'
 import Icon from '../components/common/Icon.tsx'
@@ -15,6 +16,28 @@ const itemVariants = {
 }
 
 function MenuPage() {
+  const [activeCategory, setActiveCategory] = useState(menuCategories[0]?.id ?? '')
+
+  useEffect(() => {
+    const sections = menuCategories
+      .map((category) => document.getElementById(category.id))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+        if (visible?.target.id) setActiveCategory(visible.target.id)
+      },
+      { rootMargin: '-28% 0px -58% 0px', threshold: [0, 0.15, 0.35] },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="menu-page">
       <PageHero
@@ -33,7 +56,13 @@ function MenuPage() {
 
       <nav className="menu-nav" aria-label="Menu categories">
         {menuCategories.map((category) => (
-          <a key={category.id} className="menu-nav-link" href={`#${category.id}`}>
+          <a
+            key={category.id}
+            className={`menu-nav-link ${activeCategory === category.id ? 'is-active' : ''}`}
+            href={`#${category.id}`}
+            aria-current={activeCategory === category.id ? 'true' : undefined}
+            onClick={() => setActiveCategory(category.id)}
+          >
             {category.title}
           </a>
         ))}
@@ -43,8 +72,12 @@ function MenuPage() {
         Menu items are transcribed from Mo's official menu. Current pricing and availability are confirmed at Toast checkout.
       </p>
 
-      {menuCategories.map((category) => (
-        <section key={category.id} id={category.id} className="menu-category">
+      {menuCategories.map((category, index) => (
+        <section
+          key={category.id}
+          id={category.id}
+          className={`menu-category ${index % 2 === 1 ? 'menu-category--tinted' : ''}`}
+        >
           <div className="section-header menu-category-header">
             <span className="section-label">{category.items.length} items</span>
             <h2>{category.title}</h2>
